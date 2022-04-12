@@ -3,7 +3,7 @@ const projectsDoc = document.querySelector('.github-projects');
 fetch('https://api.github.com/users/alighamdan/repos')
     .then(response => response.json())
     .then(data => {
-        data.sort((a,b)=>{
+        data.filter(e=>!e.fork).sort((a,b)=>{
             let createdAtB = new Date(b.created_at).getTime()
             let createdAtA = new Date(a.created_at).getTime()
             return createdAtB - createdAtA
